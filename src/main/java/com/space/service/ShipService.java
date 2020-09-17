@@ -1,31 +1,42 @@
 package com.space.service;
 
+import com.space.controller.ShipOrder;
 import com.space.model.Ship;
 import com.space.model.ShipType;
-import com.space.controller.ShipOrder;
 
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 public interface ShipService {
-    List<Ship> getShips(String name,
-                        String planet,
-                        ShipType shipType,
-                        Long after,
-                        Long before,
-                        Boolean isUsed,
-                        Double minSpeed,
-                        Double maxSpeed,
-                        Integer minCrewSize,
-                        Integer maxCrewSize,
-                        Double minRating,
-                        Double maxRating);
+
     Ship saveShip(Ship ship);
+
     Ship getShip(Long id);
+
     Ship updateShip(Ship oldShip, Ship newShip) throws IllegalArgumentException;
+
     void deleteShip(Ship ship);
-    List<Ship> sortShips(List<Ship> ships, ShipOrder shipOrder);
+
+    List<Ship> getShips(
+            String name,
+            String planet,
+            ShipType shipType,
+            Long after,
+            Long before,
+            Boolean isUsed,
+            Double minSpeed,
+            Double maxSpeed,
+            Integer minCrewSize,
+            Integer maxCrewSize,
+            Double minRating,
+            Double maxRating
+    );
+
+    List<Ship> sortShips(List<Ship> ships, ShipOrder order);
+
+    List<Ship> getPage(List<Ship> ships, Integer pageNumber, Integer pageSize);
+
     boolean isShipValid(Ship ship);
-    List<Ship> getShipsPage(List<Ship> ships, Integer pageNumber, Integer pageSize);
-    double calculateRating(Double speed, boolean isUsed, Date prodDate);
+
+    double computeRating(double speed, boolean isUsed, Date prod);
 }

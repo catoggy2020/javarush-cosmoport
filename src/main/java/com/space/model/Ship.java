@@ -1,36 +1,25 @@
 package com.space.model;
 
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Enumerated;
-import javax.persistence.EnumType;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "ship")
 public class Ship {
+
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String planet;
-
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private ShipType shipType;
-
-    @Temporal(value = TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date prodDate;
-
-    Boolean isUsed;
-    Double speed;
-    Integer crewSize;
-    Double rating;
+    private Boolean isUsed;
+    private Double speed;
+    private Integer crewSize;
+    private Double rating;
 
     public Long getId() {
         return id;
